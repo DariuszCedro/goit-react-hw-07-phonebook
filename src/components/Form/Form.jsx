@@ -13,7 +13,7 @@ export const Form = () => {
     const nameToAdd = form.elements.name.value;
     const phoneNumber = form.elements.number.value;
     const contactExist = contacts.some(
-      contact => contact.name.toLowerCase() === nameToAdd.toLowerCase()
+      contact => contact.contactName.toLowerCase() === nameToAdd.toLowerCase()
     );
     if (nameToAdd === '' && phoneNumber === '') {
       return;

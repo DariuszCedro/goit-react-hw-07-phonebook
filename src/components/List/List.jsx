@@ -11,18 +11,16 @@ export const List = () => {
   const contacts = useSelector(state => state.contacts);
 
   const filter = useSelector(state => state.filter);
-  
+
   const showFilteredContacts = () => {
-       
     if (contacts)
       return contacts.filter(contact =>
-        contact.name.toLowerCase().includes(filter)
+        contact.contactName.toLowerCase().includes(filter)
       );
-      return [];
+    return [];
   };
   const handleDelete = contactId => {
     dispatch(deleteContact(contactId));
-    
   };
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -31,7 +29,7 @@ export const List = () => {
     <ul>
       {showFilteredContacts().map(contact => (
         <li key={contact.id}>
-          {contact.name} : {contact.number}
+          {contact.contactName} : {contact.number}
           <button
             type="button"
             className={css.buttonRemove}
