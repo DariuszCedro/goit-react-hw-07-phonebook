@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.contactsList);
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = document.querySelector('form');
@@ -24,7 +24,6 @@ export const Form = () => {
       dispatch(
         addContact(form.elements.name.value, form.elements.number.value)
       );
-      localStorage.setItem('contacts', JSON.stringify(contacts));
     }
     form.reset();
   };
