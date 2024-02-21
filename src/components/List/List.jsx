@@ -5,24 +5,23 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/store';
 import { useEffect } from 'react';
 import { fetchContacts } from '../../redux/store';
+import {
+  selectIsLoading,
+  selectError,
+  selectFilteredContacts,
+} from '../../redux/selectors';
 
 export const List = () => {
   const dispatch = useDispatch();
 
   //Selectors--
-  const contacts = useSelector(state => state.contacts.contactsList);
-  const isLoading = useSelector(state => state.contacts.isLoading);
-  const error = useSelector(state => state.contacts.error);
-  const filter = useSelector(state => state.filter);
+
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
   //-----
 
-  const showFilteredContacts = () => {
-    if (contacts)
-      return contacts.filter(contact =>
-        contact.contactName.toLowerCase().includes(filter)
-      );
-    return [];
-  };
+  const contacts = useSelector(selectFilteredContacts);
+
   const handleDelete = contactId => {
     dispatch(deleteContact(contactId));
   };
@@ -36,7 +35,7 @@ export const List = () => {
       {error && <b>{error}</b>}
 
       <ul>
-        {showFilteredContacts().map(contact => (
+        {contacts.map(contact => (
           <li key={contact.id}>
             {contact.contactName} : {contact.number}
             <button

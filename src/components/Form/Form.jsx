@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import css from './Form.module.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { selectContacts } from '../../redux/selectors';
 
 export const Form = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contactsList);
+  const contacts = useSelector(selectContacts);
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = document.querySelector('form');
