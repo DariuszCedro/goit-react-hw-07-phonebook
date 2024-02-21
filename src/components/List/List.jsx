@@ -17,7 +17,6 @@ export const List = () => {
   //-----
 
   const showFilteredContacts = () => {
-    console.log(contacts);
     if (contacts)
       return contacts.filter(contact =>
         contact.contactName.toLowerCase().includes(filter)

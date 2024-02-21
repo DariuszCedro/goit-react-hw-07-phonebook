@@ -41,9 +41,10 @@ const contactsSlice = createSlice({
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.contactsList = [
-          ...state.filter(contact => contact.id !== action.payload),
-        ];
+        const index = state.contactsList.findIndex(
+          contact => contact.id === action.payload.id
+        );
+        state.contactsList.splice(index, 1);
       })
       .addCase(deleteContact.rejected, (state, action) => {
         state.isLoading = false;
@@ -106,6 +107,7 @@ export const deleteContact = createAsyncThunk(
         `https://65d48d493f1ab8c634356d82.mockapi.io/phonebook/contacts/${contactId}`,
         {
           method: 'DELETE',
+          headers: { 'content-type': 'application/json' },
         }
       );
 
