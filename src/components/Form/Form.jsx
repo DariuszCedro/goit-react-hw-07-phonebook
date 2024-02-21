@@ -12,6 +12,10 @@ export const Form = () => {
     const form = document.querySelector('form');
     const nameToAdd = form.elements.name.value;
     const phoneNumber = form.elements.number.value;
+    const newContact = {
+      contactName: nameToAdd,
+      number: phoneNumber,
+    };
     const contactExist = contacts.some(
       contact => contact.contactName.toLowerCase() === nameToAdd.toLowerCase()
     );
@@ -21,9 +25,7 @@ export const Form = () => {
     if (contactExist) {
       alert('This contact is already on Your list');
     } else {
-      dispatch(
-        addContact(form.elements.name.value, form.elements.number.value)
-      );
+      dispatch(addContact({ newContact }));
     }
     form.reset();
   };

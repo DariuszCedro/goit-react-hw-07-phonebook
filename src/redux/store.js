@@ -82,14 +82,14 @@ export const fetchContacts = createAsyncThunk(
 
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async (contactName, thunkAPI) => {
+  async ({ newContact }, thunkAPI) => {
     try {
       const response = await fetch(
         'https://65d48d493f1ab8c634356d82.mockapi.io/phonebook/contacts',
         {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ contactName }),
+          body: JSON.stringify(newContact),
         }
       );
 
