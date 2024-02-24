@@ -1,4 +1,4 @@
-import { addContact } from '../../redux/store';
+import { addContact } from '../../redux/operations';
 import PropTypes from 'prop-types';
 import css from './Form.module.css';
 import { useDispatch } from 'react-redux';

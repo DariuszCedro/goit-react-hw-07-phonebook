@@ -2,9 +2,8 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import css from './List.module.css';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/store';
+import { deleteContact, fetchContacts } from '../../redux/operations';
 import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/store';
 import {
   selectIsLoading,
   selectError,
